@@ -7,7 +7,7 @@ THIS_DIR=$(dirname $THIS_FILE)
 
 ######
 # Create an osci user
-sudo adduser \
+getent passwd $OSCI_USER || sudo adduser \
     --home $OSCI_HOME_DIR \
     --disabled-password \
     --quiet \
@@ -17,27 +17,27 @@ sudo adduser \
 
 ######
 # Create install directory
-sudo mkdir /opt/osci
+sudo mkdir -p /opt/osci
 
 
 ######
 # Create config directory
-sudo mkdir /etc/osci
+sudo mkdir -p /etc/osci
 
 
 ######
 # Create pid directory
-sudo mkdir /var/run/osci
+sudo mkdir -p /var/run/osci
 
 
 ######
 # Create log directory
-sudo mkdir /var/log/osci
+sudo mkdir -p /var/log/osci
 
 
 ######
 # Check out sources
-sudo mkdir /opt/osci/src
+sudo mkdir -p /opt/osci/src
 get_osci_sources
 
 ######
@@ -119,7 +119,7 @@ GERRITWATCH
 ######
 # Copy ssh settings
 sudo rm -rf $OSCI_HOME_DIR/.ssh
-sudo mkdir $OSCI_HOME_DIR/.ssh
+sudo mkdir -p $OSCI_HOME_DIR/.ssh
 
 sudo cp $NODEPOOL_HOME_DIR/.ssh/jenkins $OSCI_HOME_DIR/.ssh/jenkins
 sudo cp $THIS_DIR/gerrit.key $OSCI_HOME_DIR/.ssh/id_rsa
